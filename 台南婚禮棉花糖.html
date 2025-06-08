@@ -46,6 +46,11 @@
         .gallery figure img {
             max-width: 100%;
             border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery figure img:hover {
+            transform: scale(1.05);
         }
         .gallery figcaption {
             font-size: 0.9em;
@@ -92,6 +97,40 @@
             background-color: #f6d5d1;
             color: #8b5e3c;
         }
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .lightbox img {
+            display: block;
+            margin: auto;
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+        .lightbox:target {
+            display: block;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2em;
+            text-decoration: none;
+        }
+        .lightbox-close:hover {
+            color: #f6d5d1;
+        }
     </style>
 </head>
 <body>
@@ -122,30 +161,66 @@
         <div class="section">
             <h2>婚禮現場佈置</h2>
             <div class="gallery">
+                <!-- Example of one image -->
                 <figure>
-                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/131348492_2884367231599718_7488520238733715850_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RCgE7pVQmsIQ7kNvwHA98jd&_nc_oc=AdnTo63aH69bHi2dqPILLrFznaOn2vV-VGEBpwcKEqjhRmRRTIqJrqHPtx1DhPP3N7F4p2GMZKYJ-lJbTf5qYYK0&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=8bW6YPV4mqtdoNv_EjBF6A&oh=00_AfPpezHMJ7IHhPTZlKtCQ9jT0QMgO2vVqrYKVteXOZ80uQ&oe=686CD228" alt="棉花糖拱門">
+                    <a href="#img1">
+                        <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/131348492_2884367231599718_7488520238733715850_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RCgE7pVQmsIQ7kNvwHA98jd&_nc_oc=AdnTo63aH69bHi2dqPILLrFznaOn2vV-VGEBpwcKEqjhRmRRTIqJrqHPtx1DhPP3N7F4p2GMZKYJ-lJbTf5qYYK0&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=8bW6YPV4mqtdoNv_EjBF6A&oh=00_AfPpezHMJ7IHhPTZlKtCQ9jT0QMgO2vVqrYKVteXOZ80uQ&oe=686CD228" alt="棉花糖拱門">
+                    </a>
                     <figcaption>浪漫的棉花糖拱門</figcaption>
                 </figure>
+                <div id="img1" class="lightbox">
+                    <a href="#" class="lightbox-close">&times;</a>
+                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/131348492_2884367231599718_7488520238733715850_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RCgE7pVQmsIQ7kNvwHA98jd&_nc_oc=AdnTo63aH69bHi2dqPILLrFznaOn2vV-VGEBpwcKEqjhRmRRTIqJrqHPtx1DhPP3N7F4p2GMZKYJ-lJbTf5qYYK0&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=8bW6YPV4mqtdoNv_EjBF6A&oh=00_AfPpezHMJ7IHhPTZlKtCQ9jT0QMgO2vVqrYKVteXOZ80uQ&oe=686CD228" alt="棉花糖拱門">
+                </div>
+
+                <!-- Repeat for each image -->
                 <figure>
-                    <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/494175388_8711800528856330_7227059319850196544_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Fdiza3eUB_wQ7kNvwH123RT&_nc_oc=AdkqA-3OnqSl7SXMTKExKO-hyXCxhET7TCr8LdkUmLKparp1kbsROduFx1ZaItjioh0D4ndZM2oah21y6JvJzi7F&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=_H1QZh8hAKg3_5jO_9wFWA&oh=00_AfN7L48ldF_a9My96s_iDLOP6ejq36EEdJjoROHKyGh4fg&oe=684B42B7" alt="卡通棉花糖柱">
+                    <a href="#img2">
+                        <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/494175388_8711800528856330_7227059319850196544_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Fdiza3eUB_wQ7kNvwH123RT&_nc_oc=AdkqA-3OnqSl7SXMTKExKO-hyXCxhET7TCr8LdkUmLKparp1kbsROduFx1ZaItjioh0D4ndZM2oah21y6JvJzi7F&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=_H1QZh8hAKg3_5jO_9wFWA&oh=00_AfN7L48ldF_a9My96s_iDLOP6ejq36EEdJjoROHKyGh4fg&oe=684B42B7" alt="卡通棉花糖柱">
+                    </a>
                     <figcaption>可愛的卡通棉花糖柱</figcaption>
                 </figure>
+                <div id="img2" class="lightbox">
+                    <a href="#" class="lightbox-close">&times;</a>
+                    <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/494175388_8711800528856330_7227059319850196544_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=Fdiza3eUB_wQ7kNvwH123RT&_nc_oc=AdkqA-3OnqSl7SXMTKExKO-hyXCxhET7TCr8LdkUmLKparp1kbsROduFx1ZaItjioh0D4ndZM2oah21y6JvJzi7F&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=_H1QZh8hAKg3_5jO_9wFWA&oh=00_AfN7L48ldF_a9My96s_iDLOP6ejq36EEdJjoROHKyGh4fg&oe=684B42B7" alt="卡通棉花糖柱">
+                </div>
+
                 <figure>
-                    <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/502148281_8952033564833024_6480490619419311631_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9u-g9FNqilgQ7kNvwH51Jik&_nc_oc=AdmG3nu41UZPipn0Z7_3o85STutQhr9YiQS35Y-VPYZh28mm7bntPCGeKVWVYYHjPeO7qwYMOiR76fj1vQNt8YWM&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=N00GKSVOgB7Opp6Zcx4bCQ&oh=00_AfMezIkmNIdE_Z9M6cBt_3Y_IzgkQWQXAAtCEC0OYhW_eQ&oe=684B30AA" alt="甜點桌布置">
+                    <a href="#img3">
+                        <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/502148281_8952033564833024_6480490619419311631_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9u-g9FNqilgQ7kNvwH51Jik&_nc_oc=AdmG3nu41UZPipn0Z7_3o85STutQhr9YiQS35Y-VPYZh28mm7bntPCGeKVWVYYHjPeO7qwYMOiR76fj1vQNt8YWM&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=N00GKSVOgB7Opp6Zcx4bCQ&oh=00_AfMezIkmNIdE_Z9M6cBt_3Y_IzgkQWQXAAtCEC0OYhW_eQ&oe=684B30AA" alt="甜點桌布置">
+                    </a>
                     <figcaption>甜蜜的收禮桌布置</figcaption>
                 </figure>
+                <div id="img3" class="lightbox">
+                    <a href="#" class="lightbox-close">&times;</a>
+                    <img src="https://scontent.ftpe11-1.fna.fbcdn.net/v/t39.30808-6/502148281_8952033564833024_6480490619419311631_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9u-g9FNqilgQ7kNvwH51Jik&_nc_oc=AdmG3nu41UZPipn0Z7_3o85STutQhr9YiQS35Y-VPYZh28mm7bntPCGeKVWVYYHjPeO7qwYMOiR76fj1vQNt8YWM&_nc_zt=23&_nc_ht=scontent.ftpe11-1.fna&_nc_gid=N00GKSVOgB7Opp6Zcx4bCQ&oh=00_AfMezIkmNIdE_Z9M6cBt_3Y_IzgkQWQXAAtCEC0OYhW_eQ&oe=684B30AA" alt="甜點桌布置">
+                </div>
+
                 <figure>
-                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/121971747_2736762216360221_2252356800009925926_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=8y8meFFMWZEQ7kNvwFnyVHF&_nc_oc=Adn6PRaPDsdjq5VPNpwqW6-IHhVMgZHy3tS8VtjH8sV2v3EUUgIord-Ylz1JqQ0jhUw6jQHU4_jwlep-ifs_xNFS&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=fn8Hni10a3Ue00MfowSWQg&oh=00_AfM5onYcCnTtbWj5UG9TByDRwjCiQ0U6EEdyDofmi3ywgg&oe=686CCA5F" alt="空飄氣球">
+                    <a href="#img4">
+                        <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/121971747_2736762216360221_2252356800009925926_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=8y8meFFMWZEQ7kNvwFnyVHF&_nc_oc=Adn6PRaPDsdjq5VPNpwqW6-IHhVMgZHy3tS8VtjH8sV2v3EUUgIord-Ylz1JqQ0jhUw6jQHU4_jwlep-ifs_xNFS&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=fn8Hni10a3Ue00MfowSWQg&oh=00_AfM5onYcCnTtbWj5UG9TByDRwjCiQ0U6EEdyDofmi3ywgg&oe=686CCA5F" alt="空飄氣球">
+                    </a>
                     <figcaption>浪漫的空飄氣球</figcaption>
                 </figure>
+                <div id="img4" class="lightbox">
+                    <a href="#" class="lightbox-close">&times;</a>
+                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t1.6435-9/121971747_2736762216360221_2252356800009925926_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=8y8meFFMWZEQ7kNvwFnyVHF&_nc_oc=Adn6PRaPDsdjq5VPNpwqW6-IHhVMgZHy3tS8VtjH8sV2v3EUUgIord-Ylz1JqQ0jhUw6jQHU4_jwlep-ifs_xNFS&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=fn8Hni10a3Ue00MfowSWQg&oh=00_AfM5onYcCnTtbWj5UG9TByDRwjCiQ0U6EEdyDofmi3ywgg&oe=686CCA5F" alt="空飄氣球">
+                </div>
+
                 <figure>
-                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t39.30808-6/502411833_8946411058728608_65382141643697567_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XW_2ELa697oQ7kNvwHUGXyl&_nc_oc=Adl2H33hatpQ5otZfpyCryJb6KOHHUsGnOjLJ-pkvXrPlhyeyFwtvXy3IKAN_aW1YFCuml7INb1bu4kCrWP5p8rm&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=sMKAFlpRvHHPm0EVpGL5qQ&oh=00_AfN_Ac-2Qyq0QfMb2q5sB5gLLuW-dCqkYt3RSXZJ7ahRoQ&oe=684B4F7D" alt="送客背板">
+                    <a href="#img5">
+                        <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t39.30808-6/502411833_8946411058728608_65382141643697567_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XW_2ELa697oQ7kNvwHUGXyl&_nc_oc=Adl2H33hatpQ5otZfpyCryJb6KOHHUsGnOjLJ-pkvXrPlhyeyFwtvXy3IKAN_aW1YFCuml7INb1bu4kCrWP5p8rm&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=sMKAFlpRvHHPm0EVpGL5qQ&oh=00_AfN_Ac-2Qyq0QfMb2q5sB5gLLuW-dCqkYt3RSXZJ7ahRoQ&oe=684B4F7D" alt="送客背板">
+                    </a>
                     <figcaption>送客背板</figcaption>
                 </figure>
+                <div id="img5" class="lightbox">
+                    <a href="#" class="lightbox-close">&times;</a>
+                    <img src="https://scontent.ftpe11-2.fna.fbcdn.net/v/t39.30808-6/502411833_8946411058728608_65382141643697567_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XW_2ELa697oQ7kNvwHUGXyl&_nc_oc=Adl2H33hatpQ5otZfpyCryJb6KOHHUsGnOjLJ-pkvXrPlhyeyFwtvXy3IKAN_aW1YFCuml7INb1bu4kCrWP5p8rm&_nc_zt=23&_nc_ht=scontent.ftpe11-2.fna&_nc_gid=sMKAFlpRvHHPm0EVpGL5qQ&oh=00_AfN_Ac-2Qyq0QfMb2q5sB5gLLuW-dCqkYt3RSXZJ7ahRoQ&oe=684B4F7D" alt="送客背板">
+                </div>
             </div>
             <p>我們的作品深受新人喜愛，結合浪漫與甜蜜，讓每場婚禮都成為幸福的見證。</p>
         </div>
-        <div class="section">
+		 <div class="section">
             <h2>婚禮會場位置</h2>
             <p>以下是我們婚禮布置服務常駐的合作會場位置示意：</p>
             <iframe
@@ -168,6 +243,10 @@
                 <a class="button" href="https://line.me/R/ti/p/your_line_id" target="_blank">加入LINE好友</a>
             </p>
         </div>
+
+        <!-- 其他區塊（婚禮會場位置、聯絡我們）不變 -->
+        <!-- （這部分省略，如需可以再附上完整） -->
+
     </main>
     <footer>
         &copy; 2025 台南婚禮棉花糖布置. All Rights Reserved.
